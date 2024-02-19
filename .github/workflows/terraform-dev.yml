@@ -14,9 +14,9 @@ env:
   ARM_CLIENT_SECRET: "${{ secrets.AZURE_CLIENT_SECRET_DEV }}"
   ARM_SUBSCRIPTION_ID: "${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}"
   ARM_TENANT_ID: "${{ secrets.AZURE_TENANT_ID_DEV }}"
-  DOTNET_VERSION: '7.0.x'
+  DOTNET_VERSION: '8.0.x'
   DOTNET_WORKING_DIRECTORY: "src/PingFunctionApp"
-  TERRAFORM_WORKING_DIRECTORY: "terraform"
+  TERRAFORM_WORKING_DIRECTORY: "terraform/environments/dev"
 
 jobs:
   build:
@@ -69,10 +69,10 @@ jobs:
           terraform_version: 1.7
 
       - name: Terraform Init
-        run: terraform -chdir=environments/dev init -input=false
+        run: terraform -chdir=${{ env.TERRAFORM_WORKING_DIRECTORY }} init -input=false
 
       - name: Terraform Plan
-        run: terraform -chdir=environments/dev plan -out=tfplan -input=false
+        run: terraform -chdir=${{ env.TERRAFORM_WORKING_DIRECTORY }} plan -out=tfplan -input=false
 
       - name: Terraform Apply
         #if: github.ref == 'refs/heads/master' && github.event_name == 'push' && success()

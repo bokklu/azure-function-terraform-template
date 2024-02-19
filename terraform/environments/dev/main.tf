@@ -24,4 +24,7 @@ module "function_app" {
 
 module "key_vault" {
   source = "../../modules/key-vault"
+  application_name = module.shared.var.application_name
+  azure_resource_group_name = module.resource_group.azure_resource_group_name
+  azure_resource_group_location = module.resource_group.azure_resource_group_location
 }
