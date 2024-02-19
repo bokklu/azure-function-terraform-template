@@ -1,6 +1,7 @@
 name: Terraform Deployment - Dev
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master #for dev configure this to be feature branches
