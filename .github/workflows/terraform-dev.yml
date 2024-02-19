@@ -91,6 +91,7 @@ jobs:
         #  pass variables to variables.tf here
 
   deploy:
+    name: Deploy Azure Function App
     needs: [build, terraform]
     runs-on: ubuntu-latest
     steps:
