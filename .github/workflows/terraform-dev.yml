@@ -6,7 +6,7 @@ on:
       - master #for dev configure this to be feature branches
     paths:
       - 'terraform/**'
-      - 'src/**'
+      - 'src/PingFunctionApp/**'
 
 env:
   ARM_CLIENT_ID: "${{ secrets.AZURE_CLIENT_ID_DEV }}"
@@ -40,7 +40,7 @@ jobs:
         working-directory: ${{ env.DOTNET_WORKING_DIRECTORY }}
 
       - name: Publish
-        run: dotnet publish **/PingFunctionApp.csproj -c Release -o ./publish
+        run: dotnet publish PingFunctionApp.csproj -c Release -o ./publish
         working-directory: ${{ env.DOTNET_WORKING_DIRECTORY }}
 
       - name: Generate Deployment Package
@@ -68,10 +68,10 @@ jobs:
           terraform_version: 1.7
 
       - name: Terraform Init
-        run: terraform init -input=false environments/dev
+        run: terraform -chdir=environments/dev init -input=false
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan -input=false environments/dev
+        run: terraform -chdir=environments/dev plan -out=tfplan -input=false
 
       - name: Terraform Apply
         #if: github.ref == 'refs/heads/master' && github.event_name == 'push' && success()
