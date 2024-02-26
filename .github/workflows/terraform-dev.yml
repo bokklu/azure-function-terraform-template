@@ -70,10 +70,6 @@ jobs:
 
       - name: Terraform Init
         env:
-          ARM_SUBSCRIPTION_ID: ${{ env.ARM_SUBSCRIPTION_ID }}
-          ARM_TENANT_ID: ${{ env.ARM_TENANT_ID }}
-          ARM_CLIENT_ID: ${{ env.ARM_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ env.ARM_CLIENT_SECRET }}
           BACKEND_RESOURCE_GROUP_NAME: ${{ vars.BACKEND_RESOURCE_GROUP_NAME }}
           BACKEND_STORAGE_ACCOUNT_NAME: ${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}
           BACKEND_CONTAINER_NAME: ${{ vars.BACKEND_CONTAINER_NAME }}
