@@ -74,11 +74,12 @@ jobs:
           BACKEND_STORAGE_ACCOUNT_NAME: ${{ vars.BACKEND_STORAGE_ACCOUNT_NAME }}
           BACKEND_CONTAINER_NAME: ${{ vars.BACKEND_CONTAINER_NAME }}
           BACKEND_TF_STATE_FILE_NAME: ${{ vars.BACKEND_TF_STATE_FILE_NAME }}
-        run: terraform -chdir=$TERRAFORM_WORKING_DIRECTORY init \
-          -backend-config="resource_group_name=$BACKEND_RESOURCE_GROUP_NAME" \
-          -backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" \
-          -backend-config="container_name=$BACKEND_CONTAINER_NAME" \
-          -backend-config="key=$BACKEND_TF_STATE_FILE_NAME"
+        run: |
+          terraform -chdir="${{ env.TERRAFORM_WORKING_DIRECTORY }}" init \
+            -backend-config="resource_group_name=$BACKEND_RESOURCE_GROUP_NAME" \
+            -backend-config="storage_account_name=$BACKEND_STORAGE_ACCOUNT_NAME" \
+            -backend-config="container_name=$BACKEND_CONTAINER_NAME" \
+            -backend-config="key=$BACKEND_TF_STATE_FILE_NAME"
 
       - name: Terraform Plan
         run: terraform -chdir=$TERRAFORM_WORKING_DIRECTORY plan -out=tfplan
