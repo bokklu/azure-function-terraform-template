@@ -119,13 +119,9 @@ jobs:
 
       - name: Deploy
         env:
-          ARM_SUBSCRIPTION_ID: ${{ env.ARM_SUBSCRIPTION_ID }}
-          ARM_TENANT_ID: ${{ env.ARM_TENANT_ID }}
-          ARM_CLIENT_ID: ${{ env.ARM_CLIENT_ID }}
-          ARM_CLIENT_SECRET: ${{ env.ARM_CLIENT_SECRET }}
           RESOURCE_GROUP_NAME: ${{ needs.terraform.outputs.resource_group_name }}
           FUNCTION_NAME: ${{ needs.terraform.outputs.function_name }}
-        run:
+        run: |
           az login --service-principal -u $ARM_CLIENT_ID -p $ARM_CLIENT_SECRET --tenant $ARM_TENANT_ID --output none
           az account set -s $ARM_SUBSCRIPTION_ID --output none
           az functionapp deployment source config-zip -g $RESOURCE_GROUP_NAME -n $FUNCTION_NAME --src ./deployment.zip
