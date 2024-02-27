@@ -58,6 +58,9 @@ jobs:
   terraform:
     name: Deploy Terraform Infrastructure
     runs-on: ubuntu-latest
+    outputs:
+      resource_group_name: ${{ steps.apply.outputs.resource_group_name }}
+      function_name: ${{ steps.apply.outputs.function_name }}
 
     steps:
       - name: Checkout Repository
@@ -87,7 +90,8 @@ jobs:
         working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
         run: terraform plan -out=tfplan
 
-      - name: Terraform Apply
+      - id: apply
+        name: Terraform Apply
         working-directory: ${{ env.TERRAFORM_WORKING_DIRECTORY }}
         #if: github.ref == 'refs/heads/master' && github.event_name == 'push' && success()
         run: |
