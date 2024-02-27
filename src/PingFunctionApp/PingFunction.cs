@@ -14,8 +14,8 @@ namespace PingFunctionApp
             _logger = loggerFactory.CreateLogger<PingFunction>();
         }
 
-        [Function("ping")]
-        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "ping")] HttpRequestData req)
+        [Function("PingFunction")]
+        public HttpResponseData Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", Route = "ping")] HttpRequestData req)
         {
             _logger.LogInformation("C# HTTP trigger function processed a request.");
 
