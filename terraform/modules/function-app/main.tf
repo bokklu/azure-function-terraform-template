@@ -24,8 +24,8 @@ resource "azurerm_linux_function_app" "poc_function_app" {
   service_plan_id            = azurerm_service_plan.poc_service_plan.id
 
   site_config {
-    application_insights_key               = var.azure_app_insights_connection_string.instrumentation_key
-    application_insights_connection_string = var.azure_app_insights_connection_string.connection_string
+    application_insights_key               = var.azure_app_insights_instrumentation_key
+    application_insights_connection_string = var.azure_app_insights_connection_string
 
     application_stack {
       dotnet_version = "6.0"
