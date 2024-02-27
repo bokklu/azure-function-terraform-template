@@ -106,7 +106,7 @@ jobs:
 
   deploy:
     name: Deploy Azure Function App
-    needs: [build, terraform]
+    needs: [terraform, build]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
