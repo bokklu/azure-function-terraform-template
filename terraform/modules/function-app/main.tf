@@ -39,6 +39,7 @@ resource "azurerm_linux_function_app" "poc_function_app" {
 
   app_settings = {
     "WEBSITE_RUN_FROM_PACKAGE" = 1
+    "SCM_DO_BUILD_DURING_DEPLOYMENT" = true
   }
 
   identity {
