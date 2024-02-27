@@ -2,6 +2,7 @@ variable "application_name" {}
 variable "azure_resource_group_name" {}
 variable "azure_resource_group_location" {}
 variable "azure_app_insights_instrumentation_key" {}
+variable "azure_app_insights_connection_string" {}
 
 variable "azure_function_storage_account_name" {
   type = string

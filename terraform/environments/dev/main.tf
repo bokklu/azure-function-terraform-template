@@ -21,5 +21,6 @@ module "function_app" {
   azure_resource_group_name = module.resource_group.azure_resource_group_name
   azure_resource_group_location = module.resource_group.azure_resource_group_location
   azure_app_insights_instrumentation_key = module.app_insights.azure_app_insights_instrumentation_key
+  azure_app_insights_connection_string = module.app_insights.azure_app_insights_connection_string
   depends_on = [ module.resource_group ]
 }
