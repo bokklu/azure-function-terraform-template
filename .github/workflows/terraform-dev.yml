@@ -119,6 +119,10 @@ jobs:
 
       - name: Deploy
         env:
+          ARM_SUBSCRIPTION_ID: ${{ env.ARM_SUBSCRIPTION_ID }}
+          ARM_TENANT_ID: ${{ env.ARM_TENANT_ID }}
+          ARM_CLIENT_ID: ${{ env.ARM_CLIENT_ID }}
+          ARM_CLIENT_SECRET: ${{ env.ARM_CLIENT_SECRET }}
           RESOURCE_GROUP_NAME: ${{ needs.terraform.outputs.resource_group_name }}
           FUNCTION_NAME: ${{ needs.terraform.outputs.function_name }}
         run:
