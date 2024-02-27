@@ -121,6 +121,9 @@ jobs:
         with:
           name: function-deployment
 
+      - name: Install Azure CLI version
+        run: pip install azure-cli=="2.56.0"
+        
       - name: Deploy
         env:
           RESOURCE_GROUP_NAME: ${{ needs.terraform.outputs.resource_group_name }}
