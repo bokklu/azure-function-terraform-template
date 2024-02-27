@@ -1,5 +1,5 @@
 resource "azurerm_storage_account" "poc_storage_account" {
-  name                       = local.azure_function_storage_account_name
+  name                       = var.azure_function_storage_account_name
   resource_group_name        = var.azure_resource_group_name
   location                   = var.azure_resource_group_location
   account_tier               = var.azure_function_storage_account_sku
