@@ -29,6 +29,7 @@ resource "azurerm_linux_function_app" "poc_function_app" {
 
     application_stack {
       dotnet_version = "6.0"
+      use_dotnet_isolated_runtime = true
     } 
 
     cors {
