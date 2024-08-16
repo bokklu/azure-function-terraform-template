@@ -8,9 +8,11 @@ Sidenote: If we desire to support multiple environments within the same subscrip
 
 We can also consider the following folder structure given we want to centralize the terraform scripts into one repository:
 
+```plaintext
 /terraform
   ├── /shared
-  │     └── main.tf
+  │     └── /dev
+  │     ├── /prod
   ├── /modules
   │     ├── /vpc
   │     ├── /db
@@ -22,4 +24,3 @@ We can also consider the following folder structure given we want to centralize 
   │     ├── /service-b
   │     │     ├── /dev
   │     │     └── /prod
-  └── terraform.tfstate.d
