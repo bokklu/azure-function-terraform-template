@@ -24,3 +24,14 @@ We can also consider the following folder structure given we want to centralize 
   │     ├── /service-b
   │     │     ├── /dev
   │     │     └── /prod
+```
+We can also re-use modules from our centralized repo by pushing the terraform modules onto azure blob storage and referring to them like below:
+
+```Source modules example
+module "vpc" {
+  source = "https://mystorageaccount.blob.core.windows.net/terraform-modules/vpc-module.zip"
+
+  # Example input variables
+  region = "us-east-1"
+  cidr   = "10.0.0.0/16"
+}
