@@ -26,12 +26,12 @@ tf/
 │   │   ├── variables.tf
 │   │   ├── backend.tf
 │   │   ├── outputs.tf
-│   ├── shared/      # Shared project/subscription for global resources
+│   ├── shared/      # Shared project/subscription for shared resources
 │   │   ├── main.tf  # Defines shared resources (e.g., artifact registry)
 │   │   ├── variables.tf
 │   │   ├── backend.tf
 │   │   ├── outputs.tf
-│── global/          # Shared configurations like IAM, VPC
+│── global/          # Global configurations like IAM, VPC
 │   ├── main.tf      # Calls networking.tf & security.tf modules
 │   ├── networking.tf# Defines VPC, subnets, etc.
 │   ├── security.tf  # Defines IAM roles, policies, etc.
