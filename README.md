@@ -9,21 +9,37 @@ Sidenote: If we desire to support multiple environments within the same subscrip
 We can also consider the following folder structure given we want to centralize the terraform scripts into one repository:
 
 ```plaintext
-/terraform
-  ├── /shared
-  │     └── /dev
-  │     ├── /prod
-  ├── /modules
-  │     ├── /vpc
-  │     ├── /db
-  │     └── /iam
-  ├── /services
-  │     ├── /service-a
-  │     │     ├── /dev
-  │     │     └── /prod
-  │     ├── /service-b
-  │     │     ├── /dev
-  │     │     └── /prod
+
+tf/
+│── modules/         # Reusable modules 
+│   ├── networking/
+│   ├── compute/
+│   ├── storage/
+│── environments/    # Separate environments
+│   ├── dev/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── backend.tf
+│   │   ├── outputs.tf
+│   ├── staging/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── backend.tf
+│   │   ├── outputs.tf
+│   ├── prod/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   ├── backend.tf
+│   │   ├── outputs.tf
+│── shared/          # Shared resources (e.g., IAM, VPC)
+│   ├── networking.tf
+│   ├── security.tf
+│── services/        # Specific services using modules
+│   ├── app/
+│   ├── database/
+│── terraform.tfvars # Global default variables (optional)
+│── README.md        # Documentation
+
 ```
 We can also re-use modules from our centralized repo by pushing the terraform modules onto azure blob storage and referring to them like below:
 
