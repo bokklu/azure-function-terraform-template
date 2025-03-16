@@ -15,13 +15,8 @@ tf/
 │   ├── networking/
 │   ├── compute/
 │   ├── storage/
-│── environments/    # Separate environments
+│── environments/    # Separate environments & shared infra
 │   ├── dev/
-│   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   ├── backend.tf
-│   │   ├── outputs.tf
-│   ├── staging/
 │   │   ├── main.tf
 │   │   ├── variables.tf
 │   │   ├── backend.tf
@@ -31,14 +26,23 @@ tf/
 │   │   ├── variables.tf
 │   │   ├── backend.tf
 │   │   ├── outputs.tf
-│── shared/          # Shared resources (e.g., IAM, VPC)
-│   ├── networking.tf
-│   ├── security.tf
+│   ├── shared/      # Shared project/subscription for global resources
+│   │   ├── main.tf  # Defines shared resources (e.g., artifact registry)
+│   │   ├── variables.tf
+│   │   ├── backend.tf
+│   │   ├── outputs.tf
+│── global/          # Shared configurations like IAM, VPC
+│   ├── main.tf      # Calls networking.tf & security.tf modules
+│   ├── networking.tf# Defines VPC, subnets, etc.
+│   ├── security.tf  # Defines IAM roles, policies, etc.
+│   ├── variables.tf # Variables for global resources
+│   ├── outputs.tf   # Outputs for reference
 │── services/        # Specific services using modules
-│   ├── app/
-│   ├── database/
+│   ├── service-a/
+│   ├── service-b/
 │── terraform.tfvars # Global default variables (optional)
 │── README.md        # Documentation
+
 
 ```
 We can also re-use modules from our centralized repo by pushing the terraform modules onto azure blob storage and referring to them like below:
